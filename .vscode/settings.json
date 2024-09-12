@@ -1,6 +1,6 @@
 {
   "editor.formatOnSave": true,
-  "python.pythonPath": "venv\\Scripts\\python.exe",
+  "python.pythonPath": "Basics/venv/bin/activate",
   "python.sortImports.args": ["--profile=black"],
   "python.formatting.provider": "black",
   "python.formatting.blackArgs": ["--line-length=119"],
@@ -8,5 +8,8 @@
     "editor.codeActionsOnSave": {
       "source.organizeImports": "explicit"
     }
-  }
+  },
+  "python.terminal.activateEnvironment": true,
+
+  "python.venvPath": "Basics/venv/bin/activate",
 }
