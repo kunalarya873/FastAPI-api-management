@@ -10,7 +10,7 @@ from .utils import generate_passwd_hash
 class UserService:
     async def get_user_by_email(self, email: str, session: AsyncSession):
         statement = select(User).where(User.email == email)
-
+        
         result = await session.exec(statement)
         return result.first()
 

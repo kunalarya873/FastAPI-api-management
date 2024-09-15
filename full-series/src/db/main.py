@@ -13,10 +13,10 @@ async def init_db() -> None:
         await conn.run_sync(SQLModel.metadata.create_all)
 
 
-async def get_session() -> AsyncSession:
+async def get_session() -> AsyncSession: # type: ignore
     Session = sessionmaker(
-        bind=async_engine, class_=AsyncSession, expire_on_commit=False
-    )
+        bind=async_engine, class_=AsyncSession, expire_on_commit=False # type: ignore
+    ) # type: ignore
 
-    async with Session() as session:
-        yield session
+    async with Session() as session: # type: ignore
+        yield session # type: ignore
