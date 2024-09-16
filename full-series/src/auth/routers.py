@@ -37,7 +37,8 @@ async def login(login_data: UserLoginModel, session: AsyncSession = Depends(get_
         if passsword_valid := verify_password(password, user.password_hash):
             access_token = create_access_token(user_data={
                 'email': user.email,
-                'user_uid': str(user.uid)
+                'user_uid': str(user.uid),
+                'role': user.role
             }, expiry=timedelta(days=REFRESH_TOKEN_EXPIRY)) # type: ignore
             refresh_token=create_access_token(user_data={
                 'email': user.email,

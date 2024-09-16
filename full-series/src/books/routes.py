@@ -18,8 +18,9 @@ async def get_all_books(session: AsyncSession = Depends(get_session), user_detai
     return await book_service.get_all_books(session) # type: ignore
 
 @book_router.post('/', status_code=status.HTTP_201_CREATED, response_model=Book, dependencies=[role_checker])
-async def create_a_book(book_data: BookCreateModel, session: AsyncSession = Depends(get_session), user_details=Depends(access_token_bearer)):
-    return await book_service.create_book(book_data, session) # type: ignore
+async def create_a_book(book_data: BookCreateModel, session: AsyncSession = Depends(get_session), token_detail:dict =Depends(access_token_bearer)):
+    user_id = token_detail.get['user']['user_uid'] # type: ignore
+    return await book_service.create_book(book_data, user_id, session) # type: ignore
 
 @book_router.get('/{book_id}', response_model=Book, dependencies=[role_checker])
 async def get_book(book_id: int, session: AsyncSession = Depends(get_session), user_details=Depends(access_token_bearer)) -> Book:
